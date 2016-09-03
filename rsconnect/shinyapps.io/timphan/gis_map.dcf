@@ -1,0 +1,9 @@
+name: gis_map
+account: timphan
+server: shinyapps.io
+appId: 123312
+bundleId: 548104
+url: https://timphan.shinyapps.io/GIS_map/
+when: 1472867499.05806
+asMultiple: FALSE
+asStatic: FALSE
