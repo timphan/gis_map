@@ -3,6 +3,7 @@ library(leaflet)
 library(RColorBrewer)
 library(rgdal)
 library(rgeos)
+library(googlesheets)
 
 
 ui <- bootstrapPage(
@@ -19,12 +20,18 @@ server <- function(input, output, session) {
     p2_shp<-spTransform(p2_shp, CRS("+init=epsg:4326"))
     names(p2_shp)[3]<- "Precinct_ID"
     names(p2_shp)[4]<- "County"
+    
+    
+    
+    
+    
     factpal <- colorFactor(topo.colors(11), p2_shp$County)
     leaflet(data = p2_shp) %>% addProviderTiles("CartoDB.Positron") %>%
        addPolygons(stroke = FALSE, 
                 smoothFactor = 0.2, 
                 fillOpacity = 1,
-                color = ~factpal(County))
+                color = ~factpal(County), group="Region") %>%
+        addLayersControl(overlayGroups=c("Region"))
   })
 
 
